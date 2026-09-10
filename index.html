@@ -62,11 +62,209 @@
         <a href="https://wokwi.com/projects/473963830961955841" target="_blank" class="btn">Link til Wokwi med ESP32 og LED setup</a>
       </div>
     </article>
+
         <!-- ================= MODULÆR BLOK: PROJEKT 2 ================= -->
     <!-- Eleverne kopierer blot denne <section> til nye forløb -->
     <article class="card project-block">
       <div class="project-header">
         <span class="badge">Forløb 2</span>
+        <h3>SOS led blink</h3>
+        <span class="date">September 2026</span>
+      </div>
+
+      <div class="project-content">
+        <h4>Projektbeskrivelse</h4>
+        <p>Projektet går ud på at lave et SOS signal med en LED, samt lærer while, for og if loops.</p>
+
+        <h4>Kildekode / Resultat</h4>
+        <pre><code>// from machine import Pin
+from time import sleep
+
+led = Pin(5, Pin.OUT)
+
+while True:
+    for i in range (3):
+        sleep(0.25)
+        led.value(1)
+        sleep(0.25)
+        led.value(0)
+    
+    sleep(0.5)
+
+    for i in range (3):
+        led.value(1)
+        sleep(0.5)
+        led.value(0)
+        sleep(0.5)
+
+    for i in range (3):
+        led.value(1)
+        sleep(0.25)
+        led.value(0)
+        sleep(0.25)
+    
+    sleep(2)
+</code></pre>
+
+        <h4>Refleksion & Læring</h4>
+        <ul>
+          <li>Reletive simple steps gjorde det nemt at lære hvordan loops fungerer. Wokwi er også et nemt værktøj til at eksperimentere med elektronik og programmering.</li>
+          <li>Til at starte med opretede jeg bare variabler og plusede dem med 1 for hvert loop ind til der var gået 3 gange for jeg gik videre til næste bogstav i SOS, men for i in range gør den proces meget nemmere.</li>
+        </ul>
+
+        <a href="https://wokwi.com/projects/474776147747598337" target="_blank" class="btn">Wowki link</a>
+      </div>
+    </article>
+
+            <!-- ================= MODULÆR BLOK: PROJEKT 3 ================= -->
+    <!-- Eleverne kopierer blot denne <section> til nye forløb -->
+    <article class="card project-block">
+      <div class="project-header">
+        <span class="badge">Forløb 3</span>
+        <h3>Ret 5 fejl</h3>
+        <span class="date">September 2026</span>
+      </div>
+
+      <div class="project-content">
+        <h4>Projektbeskrivelse</h4>
+        <p>Vi skal rette 5 fejl i en eksisterende kode og forstå, hvordan man fejlfinder og retter koder.</p>
+
+        <h4>Kildekode / Resultat</h4>
+        <pre><code>// import time
+from machine import Pin #1 omvendt rækkefølge
+
+LED = Pin(5, Pin.OUT)
+pausetid = 0.50
+time.sleep(0.1) #2 punktum ikke komma
+x=0
+print("Hello XXXXXX")
+
+while True:
+    x = x+1
+    for i in range(9): #3 glemt ":"
+        if (0 <= i < 3) or (5< i < 9):
+            pausetid = 0.5
+            if (i == 2) or (i ==8):
+                print("s", end="")
+                time.sleep(0.5)
+        else:
+            pausetid = 1
+            if (i==5):
+                print("o", end="") #4 skal rykkes en op før at if loopet virker
+                time.sleep(0.5)
+        LED.value(1)
+        time.sleep(pausetid) #5 lille p da variablen i starten er med lille
+        LED.value(0)
+        time.sleep(pausetid)
+    print(" ", x)
+    time.sleep(2)
+</code></pre>
+
+        <h4>Refleksion & Læring</h4>
+        <ul>
+          <li>Man lærer at ligge mærke til og følge de små regler man skal følge når man skriver kode, samt hvordan man fejlfinder og retter koder.</li>
+          <li>Jeg sad lidt fast på den sidste, men spurgte Kristoffer som hurtigt forklarede den femte.</li>
+        </ul>
+
+        <a href="https://wokwi.com/projects/474776644639579137" target="_blank" class="btn">Wokwi link</a>
+      </div>
+    </article>
+
+            <!-- ================= MODULÆR BLOK: PROJEKT 4 ================= -->
+    <!-- Eleverne kopierer blot denne <section> til nye forløb -->
+    <article class="card project-block">
+      <div class="project-header">
+        <span class="badge">Forløb 4</span>
+        <h3>Ultrasonisk sensor</h3>
+        <span class="date">September 2026</span>
+      </div>
+
+      <div class="project-content">
+        <h4>Projektbeskrivelse</h4>
+        <p>Vi skal implementere en ultrasonisk sensor i vores projekt og bruge den til at måle afstande.</p>
+
+        <h4>Kildekode / Resultat</h4>
+        <pre><code>// import machine
+from machine import Pin
+import time
+
+trig_pin = Pin(7, Pin.OUT)
+echo_pin = Pin(6, Pin.IN)
+led = Pin(5, Pin.OUT)
+
+while True:
+    trig_pin.value(0)
+    time.sleep_us(2)
+    trig_pin.value(1)
+    time.sleep_us(10)
+    trig_pin.value(0)
+    duration = machine.time_pulse_us(echo_pin, 1, 30000)
+    tid = round(340.00*duration/2000000, 2)
+    print(tid, "m")
+    if tid <= 1.5:
+        led.value(1)
+    else:
+        led.value(0)
+    time.sleep(0.25)
+</code></pre>
+
+        <h4>Refleksion & Læring</h4>
+        <ul>
+          <li>Det var interessant at bruge ultrasoniske sensorer og forstå hvordan man måler afstande med hjælp af lyd og derved indrage fysik.</li>
+          <li>Kendte ikke til time_pulse_us funktionen så det tog lidt tid at forstå hvordan den virkede.</li>
+        </ul>
+
+        <a href="https://wokwi.com/projects/474780582281542657" target="_blank" class="btn">Wokwi link</a>
+      </div>
+    </article>
+
+            <!-- ================= MODULÆR BLOK: PROJEKT 5 ================= -->
+    <!-- Eleverne kopierer blot denne <section> til nye forløb -->
+    <article class="card project-block">
+      <div class="project-header">
+        <span class="badge">Forløb 5</span>
+        <h3>Knap LED</h3>
+        <span class="date">September 2026</span>
+      </div>
+
+      <div class="project-content">
+        <h4>Projektbeskrivelse</h4>
+        <p>Vi skal få en knap til at kontrollere en LED baseret på knaptryk.</p>
+
+        <h4>Kildekode / Resultat</h4>
+        <pre><code>// import time
+import machine
+from machine import Pin
+
+knap = Pin(11, Pin.IN)
+led = Pin(5, Pin.OUT)
+
+while True:
+    knapValue = knap.value()
+    if knapValue == 1:
+        led.value(1)
+        time.sleep(0.1)
+    
+    else:
+        led.value(0)
+        time.sleep(0.1)
+</code></pre>
+
+        <h4>Refleksion & Læring</h4>
+        <ul>
+          <li>Ligesom i tidligere projekter er det interessant at lærer nye måder at håndtere kode, men også at se de samme koncepter og regler anvendt igen.</li>
+          <li>Man skulle lige undersøge hvordan knappen skulle sættes op, men selve koden var ikke særlig kompleks.</li>
+        </ul>
+
+        <a href="https://wokwi.com/projects/474777729455712257" target="_blank" class="btn">Wokwi link</a>
+      </div>
+    </article>
+
+            <!-- ================= MODULÆR BLOK: PROJEKT 6 ================= -->
+    <!-- Eleverne kopierer blot denne <section> til nye forløb -->
+    <article class="card project-block">
+      <div class="project-header">
+        <span class="badge">Forløb 6</span>
         <h3>[TItel på næste projekt]</h3>
         <span class="date">Måned År</span>
       </div>
