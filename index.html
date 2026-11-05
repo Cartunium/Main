@@ -264,7 +264,114 @@ while True:
     <!-- Eleverne kopierer blot denne <section> til nye forløb -->
     <article class="card project-block">
       <div class="project-header">
-        <span class="badge">Forløb 6</span>
+        <span class="badge">Forløb 7</span>
+        <h3>Neopixel ring</h3>
+        <span class="date">November 2026</span>
+      </div>
+
+      <div class="project-content">
+        <h4>Projektbeskrivelse</h4>
+        <p>Genopfriskning på Neopixel og general kodning efter Malaga turen. En Neopixelring skal lyse når knappen trykkes ned og slukke når knappen ikke trykkes ned. Find og ret også de 5 fejl i koden.</p>
+
+        <h4>Kildekode / Resultat</h4>
+        <pre><code>// from machine import Pin
+from time import sleep
+import neopixel
+
+knap = Pin(5, Pin.IN, Pin.PULL_UP)
+
+antal_led = 30
+timing_v6 = (300, 950, 700, 600)
+
+np = neopixel.NeoPixel(
+    Pin(10, Pin.OUT),
+    antal_led,
+    bpp=3,
+    timing=timing_v6
+)
+
+while True:
+    if knap.value() == 0:
+        for i in range(antal_led):
+            np[i] = (255, 125, 0)
+        np.write()
+    else:
+        np.fill((0, 0, 0))
+        np.write()
+    sleep(0.1)
+</code></pre>
+
+        <h4>Refleksion & Læring</h4>
+        <ul>
+          <li>Syntaks skulle lige gentrænes men ellers var koden ikke den sværeste at bearbejde.</li>
+        </ul>
+
+        <a href="https://wokwi.com/projects/473951568463619073" target="_blank" class="btn">Wokwi link</a>
+      </div>
+    </article>
+
+    
+            <!-- ================= MODULÆR BLOK: PROJEKT 7 ================= -->
+    <!-- Eleverne kopierer blot denne <section> til nye forløb -->
+    <article class="card project-block">
+      <div class="project-header">
+        <span class="badge">Forløb 7</span>
+        <h3>Bakmåler</h3>
+        <span class="date">November 2026</span>
+      </div>
+
+      <div class="project-content">
+        <h4>Projektbeskrivelse</h4>
+        <p>Endnu en genoptræning på kodning efter Malaga turen. En bakmåler skal måle en afstand og vise "Fri bane" hvis afstanden er over 20cm og "Stop" hvis afstanden er under 20cm.</p>
+
+        <h4>Kildekode / Resultat</h4>
+        <pre><code>// import time
+from machine import Pin, time_pulse_us
+
+redLed = Pin(6, Pin.OUT)
+greenLed = Pin(7, Pin.OUT)
+trig = Pin(12, Pin.OUT)
+echo = Pin(13, Pin.IN)
+
+def målAfstand():
+    trig.value(0)
+    time.sleep_us(2)
+    trig.value(1)
+    time.sleep_us(10)
+    trig.value(0)
+    varighed = time_pulse_us(echo, 1, 30000)
+    afstand = varighed/58
+    return afstand
+
+while True:
+    afstand = målAfstand()
+    if afstand < 20:
+        greenLed.value(0)
+        redLed.value(1)
+        print("Stop!")
+    else:
+        redLed.value(0)
+        greenLed.value(1)
+        print("Fri bane")
+    time.sleep_us(200)
+</code></pre>
+
+        <h4>Refleksion & Læring</h4>
+        <ul>
+          <li>Opgaven var relativt simpelt da flowchart, psuodokode og kodebrikker allerede var givet.</li>
+          <li>Da den ultrasoniske sensor ikke har været brugt i et stykke tid skulle funktionen for måling af afstand genhuskes.</li>
+        </ul>
+
+        <a href="https://wokwi.com/projects/473901665091156993" target="_blank" class="btn">Wokwi link</a>
+      </div>
+    </article>
+
+    
+            <!-- ================= MODULÆR BLOK: PROJEKT 8 ================= -->
+    <!-- Eleverne kopierer blot denne <section> til nye forløb -->
+    <article class="card project-block">
+      <div class="project-header">
+        <span class="badge">Forløb 8</span>
         <h3>[Titel på næste projekt]</h3>
         <span class="date">Måned År</span>
       </div>
@@ -286,7 +393,6 @@ while True:
         <a href="https://github.com/Cartunium/Main" target="_blank" class="btn">Github link</a>
       </div>
     </article>
-
   </main>
 
   <!-- ================= FOOTER ================= -->
